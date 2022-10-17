@@ -1,4 +1,7 @@
-#include "Header.h"
+#include "main.h"
+#include <stdio.h>
+#include <stdarg.h>
+#include <limits.h>
 
 int _printf(const char* format, ...)
 {
@@ -6,6 +9,7 @@ int _printf(const char* format, ...)
     va_list args;
 
     char* p = NULL;
+    char c;
     va_start(args, format);
 
     for (i = 0; format[i] != '\0'; i++)
@@ -19,25 +23,27 @@ int _printf(const char* format, ...)
         {
             if (format[i + 1] == 'c')
             {
-                p = va_arg(args, char*);
-                _putchar(p);
+                c = va_arg(args, int);
+                putchar(c);
             }
             else if (format[i + 1] == 's')
             {
                 p = va_arg(args, char*);
                 for (j = 0; p[j] != '\0'; j++)
                 {
-                    _putchar(p[j]);
+                    putchar(p[j]);
                 }
             }
         }
         else
         {
             if (format[i - 1] == '%') continue;
-            _putchar(format[i]);
+            putchar(format[i]);
         }
-        
+
     }
     va_end(args);
     return (0);
 }
+
+
