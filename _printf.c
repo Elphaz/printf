@@ -11,24 +11,23 @@
 
 int _printf(const char *format, ...)
 {
-int i, j, strlen = 0;
+int i, j, count = 0, count1 = 0, count2 = 0;
 va_list args;
 char *p = NULL;
 char c;
-
 va_start(args, format);
-
 for (i = 0; format[i] != '\0'; i++)
 {
-strlen++;
+count++;
 }
-
-for (i = 0; i < strlen; i++)
+for (i = 0; i < count; i++)
 {
 if (format[i] == '%')
 {
+count1++;
 if (format[i + 1] == 'c')
 {
+count2++;
 c = va_arg(args, int);
 _putchar(c);
 }
@@ -37,6 +36,7 @@ else if (format[i + 1] == 's')
 p = va_arg(args, char *);
 for (j = 0; p[j] != '\0'; j++)
 {
+count2 += j;
 _putchar(p[j]);
 }
 }
@@ -49,5 +49,5 @@ _putchar(format[i]);
 }
 }
 va_end(args);
-return (0);
+return (count - count1 * 2 + count2);
 }
