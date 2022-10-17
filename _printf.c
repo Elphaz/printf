@@ -24,21 +24,21 @@ int _printf(const char* format, ...)
             if (format[i + 1] == 'c')
             {
                 c = va_arg(args, int);
-                putchar(c);
+                _putchar(c);
             }
             else if (format[i + 1] == 's')
             {
                 p = va_arg(args, char*);
                 for (j = 0; p[j] != '\0'; j++)
                 {
-                    putchar(p[j]);
+                   _putchar(p[j]);
                 }
             }
         }
         else
         {
             if (format[i - 1] == '%') continue;
-            putchar(format[i]);
+            _putchar(format[i]);
         }
 
     }
