@@ -1,43 +1,43 @@
 #include "main.h"
-/**
- * _printf - printf function
- * @format: const char pointer
- * Return: b_len
- */
-int _printf(const char *format, ...)
+
+int _printf(const char* format, ...)
 {
-	int (*pfunc)(va_list, flags_t *);
-	const char *p;
-	va_list arguments;
-	flags_t flags = {0, 0, 0};
+    int i, j, k, strlen = 0;
+    va_list args;
 
-	register int count = 0;
+    char* p = NULL;
+    va_start(args, format);
 
-	va_start(arguments, format);
-	if (!format || (format[0] == '%' && !format[1]))
-		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
-	for (p = format; *p; p++)
-	{
-		if (*p == '%')
-		{
-			p++;
-			if (*p == '%')
-			{
-				count += _putchar('%');
-				continue;
-			}
-			while (get_flag(*p, &flags))
-				p++;
-			pfunc = get_print(*p);
-			count += (pfunc)
-				? pfunc(arguments, &flags)
-				: _printf("%%%c", *p);
-		} else
-			count += _putchar(*p);
-	}
-	_putchar(-1);
-	va_end(arguments);
-	return (count);
+    for (i = 0; format[i] != '\0'; i++)
+    {
+        strlen++;
+    }
+
+    for (i = 0; i < strlen; i++)
+    {
+        if (format[i] == '%')
+        {
+            if (format[i + 1] == 'c')
+            {
+                p = va_arg(args, char*);
+                putchar(p);
+            }
+            else if (format[i + 1] == 's')
+            {
+                p = va_arg(args, char*);
+                for (j = 0; p[j] != '\0'; j++)
+                {
+                    putchar(p[j]);
+                }
+            }
+        }
+        else
+        {
+            if (format[i - 1] == '%') continue;
+            putchar(format[i]);
+        }
+        
+    }
+    va_end(args);
+    return (0);
 }
