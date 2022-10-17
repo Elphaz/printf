@@ -5,4 +5,6 @@
 int main()
 {
 	_printf("Hello world");
+return(0);
 }
+

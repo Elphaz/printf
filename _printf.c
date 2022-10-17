@@ -5,7 +5,7 @@
 
 int _printf(const char* format, ...)
 {
-    int i, j, k, strlen = 0;
+    int i, j, strlen = 0;
     va_list args;
 
     char* p = NULL;
