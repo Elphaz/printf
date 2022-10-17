@@ -48,6 +48,6 @@ continue;
 _putchar(format[i]);
 }
 }
-va_end(args)
+va_end(args);
 return (count - count1 * 2 + count2 - 1);
 }
