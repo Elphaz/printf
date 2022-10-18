@@ -35,7 +35,16 @@ int _printf(const char *format, ...)
 			flags = get_flags(format, &i);
 			width = get_width(format, &i, list);
 			precision = get_precision(format, &i, list);
-			size = get_size(format, &i);
+			//size = get_size(format, &i);
+			if (format[curr_i] == 'l')
+		        size = S_LONG;
+	                else if (format[curr_i] == 'h')
+		        size = S_SHORT;
+
+	                if (size == 0)
+		        *i = curr_i - 1;
+	                else
+		        *i = curr_i;
 			++i;
 			printed = handle_print(format, &i, list, buffer,
 				flags, width, precision, size);
