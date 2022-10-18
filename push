@@ -1,2 +1,4 @@
 #!/bin/bash
-git add . && git commit -m "MAIN" && git push origin
+git add .
+git commit -m "MAIN"
+git push origin
